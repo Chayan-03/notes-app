@@ -3,26 +3,26 @@ import { useNotes } from '../../context/notes-context';
 import { v4 as uuid } from 'uuid';
 
 
-
 export const NotesCard = ({ key, id, title, text,isPinned }) => {
     const { notesDispatch } = useNotes();
-
-    const onPinClick = ({ id }) => {
-            !isPinned &&
-            notesDispatch({
+    const onPinClick = ( id ) => {
+            !isPinned ? notesDispatch({
                 type: 'PIN_NOTE',
-                isPinned: true,
+                // isPinned: true,
+                payload: {id}
+            }): notesDispatch({
+                type: 'UNPIN_NOTE',
+                // isPinned: false,
                 payload: {id}
             })
     }
-
     return (
         <>
             <div className='w-56 border border-neutral=800 rounded-xl' key={id}>
                 <div className='flex justify-between items-center mt-4 p-2'>
                     <p>{title}</p>
                     <button onClick={() => onPinClick(id)}>
-                        <span className={`material-symbols-outlined ${isPinned ? 'text-zinc-950' : ''}`}>
+                        <span className={isPinned ? 'material-icons' : 'material-symbols-outlined'}>
                             push_pin
                         </span>
                     </button>

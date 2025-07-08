@@ -29,7 +29,14 @@ export const notesReducer = (state, { type, payload }) => {
             return {
                 ...state,
                 notes: state.notes.map(note =>
-                    note.id === payload.id ? { ...note, isPinned: payload.isPinned } : note
+                    note.id === payload.id ? { ...note, isPinned: !note.isPinned  } : note
+                )
+            }
+        case 'UNPIN_NOTE':
+            return {
+                ...state,
+                notes: state.notes.map(note =>
+                    note.id === payload.id ? { ...note, isPinned: !note.isPinned } : note
                 )
             }
         default:
