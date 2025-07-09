@@ -5,7 +5,7 @@ import { useNotes } from '../../context/notes-context';
 
 
 export const Home = () => {
-    const { title, text, notes, notesDispatch } = useNotes();
+    const { title, text, notes, notesDispatch,archive } = useNotes();
     const onTitleChange = (e) => {
         notesDispatch({ type: 'SET_TITLE', payload: e.target.value });
     }
@@ -21,6 +21,8 @@ export const Home = () => {
         })
     }
     console.log(notes);
+    console.log('archive');
+    console.log(archive);
     const pinnedNotes = notes?.length > 0 && notes.filter(({ isPinned }) => isPinned);
     const unPinnedNotes = notes?.length > 0 && notes.filter(({ isPinned }) => !isPinned);
 

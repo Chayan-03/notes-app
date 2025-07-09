@@ -14,7 +14,7 @@ export const Sidebar = () => {
             </span>
             <span>Home</span>
             </NavLink>
-            <NavLink className = {getStyles} to='/archive'>
+            <NavLink className = {getStyles} to='/archived'>
             <span class="material-symbols-outlined">
                 archive
             </span>

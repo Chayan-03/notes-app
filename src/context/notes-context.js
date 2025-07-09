@@ -6,13 +6,14 @@ import{useContext,createContext, useReducer} from 'react';
 const NotesContext = createContext();
 const NotesProvider = ({ children }) => {
     const initialState = {
+        archive: [],
         notes: [],
         title: '',
         text: ''
      }
-    const [{ title, text, notes,isPinned}, notesDispatch] = useReducer(notesReducer, initialState)
+    const [{ title, text, notes, archive}, notesDispatch] = useReducer(notesReducer, initialState)
     return (
-        <NotesContext.Provider value={{ title, text, notes,notesDispatch,isPinned }}>
+        <NotesContext.Provider value={{ title, text, notes, archive, notesDispatch}}>
             {children}
         </NotesContext.Provider>
     )

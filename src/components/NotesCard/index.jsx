@@ -2,19 +2,22 @@ import React from 'react';
 import { useNotes } from '../../context/notes-context';
 import { v4 as uuid } from 'uuid';
 
-
-export const NotesCard = ({ key, id, title, text,isPinned }) => {
+export const NotesCard = ({ id, title, text,isPinned }) => {
     const { notesDispatch } = useNotes();
     const onPinClick = ( id ) => {
             !isPinned ? notesDispatch({
                 type: 'PIN_NOTE',
-                // isPinned: true,
                 payload: {id}
             }): notesDispatch({
                 type: 'UNPIN_NOTE',
-                // isPinned: false,
                 payload: {id}
             })
+    };
+    const addArchive = (id) => {
+        notesDispatch({
+            type: 'ADD_ARCHIVE',
+            payload: {id}
+        })
     }
     return (
         <>
@@ -27,10 +30,10 @@ export const NotesCard = ({ key, id, title, text,isPinned }) => {
                         </span>
                     </button>
                 </div>
-                <div className='flex flex-col'>
+                <div className='flex flex-col '>
                     <p>{text}</p>
                     <div className='ml-auto'>
-                        <button>
+                        <button onClick={() => addArchive(id)}>
                             <span className="material-symbols-outlined">
                                 archive
                             </span>
